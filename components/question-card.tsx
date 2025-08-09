@@ -190,7 +190,7 @@ export default function QuestionCard({
               </span>
             </div>
             <div
-              className="markdown-content bg-gray-50 rounded-lg p-4 border border-gray-200"
+              className="text-gray-900 bg-green-50 p-3 rounded-md prose prose-sm max-w-none [&_pre]:bg-gray-100 [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_pre]:border [&_pre]:border-gray-200 [&_code]:bg-gray-200 [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono [&_.hljs]:bg-transparent [&_.relative]:!bg-gray-100 [&_.relative]:!rounded-lg [&_.relative]:!border [&_.relative]:!border-gray-200 [&_.relative]:!overflow-hidden [&_.bg-gray-200]:!bg-gray-200 [&_.flex]:!flex [&_.items-center]:!items-center [&_.justify-between]:!justify-between [&_.px-4]:!px-4 [&_.py-2]:!py-2 [&_.border-b]:!border-b [&_.border-gray-300]:!border-gray-300 [&_.text-xs]:!text-xs [&_.font-medium]:!font-medium [&_.text-gray-600]:!text-gray-600 [&_.uppercase]:!uppercase [&_.bg-white]:!bg-white [&_.hover\\:bg-gray-50]:hover:!bg-gray-50 [&_.text-gray-700]:!text-gray-700 [&_.px-2]:!px-2 [&_.py-1]:!py-1 [&_.rounded]:!rounded [&_.border]:!border [&_.border-gray-300]:!border-gray-300 [&_.transition-colors]:!transition-colors [&_.duration-200]:!duration-200"
               dangerouslySetInnerHTML={{ __html: answer }}
             />
           </div>

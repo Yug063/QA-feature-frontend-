@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowUp } from "lucide-react";
 import QuestionCard from "./question-card";
-import EnhancedStatisticsDisplay from "./enhanced-statistics-display";
 
 interface Question {
   id: string;
@@ -101,10 +100,10 @@ export default function QuestionCardsList({
   return (
     <div className="space-y-6">
       {/* Bulk Actions Header */}
-      <div className="sticky top-0 z-20 bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
+      <div className="sticky top-0 z-20 bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-3">
               <Checkbox
                 checked={
                   selectedCards.length === questions.length &&
@@ -125,25 +124,25 @@ export default function QuestionCardsList({
                 size="sm"
                 variant="destructive"
                 onClick={handleBulkDelete}
-                className="h-8"
+                className="h-9 px-4"
               >
                 Delete Selected ({selectedCards.length})
               </Button>
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
             <Button
               size="sm"
               variant="outline"
               onClick={() => setBulkMode(!bulkMode)}
-              className="h-8"
+              className="h-9 px-4"
             >
               {bulkMode ? "Exit Bulk Mode" : "Bulk Select"}
             </Button>
 
             {/* Question count indicator */}
-            <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-500 bg-gray-100 px-4 py-2 rounded-full">
               {questions.length} question{questions.length !== 1 ? "s" : ""}
             </div>
           </div>
@@ -151,7 +150,7 @@ export default function QuestionCardsList({
       </div>
 
       {/* Vertical Questions List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {questions.map((question, index) => (
           <div key={question.id} className="relative">
             {/* Selection checkbox for bulk mode */}
@@ -168,13 +167,25 @@ export default function QuestionCardsList({
               </div>
             )}
 
+            {/* Answer Status Indicator */}
+            {answers[question.id] && (
+              <div className="absolute top-4 right-4 z-10">
+                <div className="flex items-center space-x-1 px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs border border-green-200">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>Answered</span>
+                </div>
+              </div>
+            )}
+
             {/* Question Card - Full Width */}
             <div
               className={`transition-all duration-200 ${
                 selectedCards.includes(question.id)
                   ? "ring-2 ring-blue-500 ring-opacity-50"
                   : ""
-              } ${bulkMode || selectedCards.length > 0 ? "ml-12" : ""}`}
+              } ${bulkMode || selectedCards.length > 0 ? "ml-12" : ""} ${
+                answers[question.id] ? "border-l-4 border-l-green-500" : ""
+              }`}
             >
               <QuestionCard
                 question={question}
@@ -190,7 +201,7 @@ export default function QuestionCardsList({
 
             {/* Divider line between cards (except last) */}
             {index < questions.length - 1 && (
-              <div className="mt-4 border-b border-gray-100"></div>
+              <div className="mt-6 border-b border-gray-100"></div>
             )}
           </div>
         ))}
